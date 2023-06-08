@@ -29,8 +29,21 @@
             var input = document.getElementById('searchInput');
             var filter = input.value.toUpperCase();
 
-            var searchableDivs = document.querySelectorAll('.searchable');
+            /* Make sure that we are not showing section titles when searching. */
+            var titles = document.querySelectorAll('.section-title');
+            if (filter.length != 0) {
+                for (var i = 0; i < titles.length; i++) {
+                    titles[i].classList.add('d-none');
+                }
+            }
+            else {
+                for (var i = 0; i < titles.length; i++) {
+                    titles[i].classList.remove('d-none');
+                }
+            }
 
+            /* Do the actual filtering. */
+            var searchableDivs = document.querySelectorAll('.searchable');
             for (var i = 0; i < searchableDivs.length; i++) {
                 var linkTexts = findLinkText(searchableDivs[i]);
                 var visible = false;
@@ -47,6 +60,18 @@
                     searchableDivs[i].classList.remove('d-none');
                 } else {
                     searchableDivs[i].classList.add('d-none');
+                }
+            }
+            /* Make sure that we are not showing duplicate entries. */
+            var duplicates = document.querySelectorAll('.duplicate');
+            if (filter.length != 0) {
+                for (var i = 0; i < duplicates.length; i++) {
+                    duplicates[i].classList.add('d-none');
+                }
+            }
+            else {
+                for (var i = 0; i < duplicates.length; i++) {
+                    duplicates[i].classList.remove('d-none');
                 }
             }
         }
@@ -328,7 +353,7 @@
     <!-- The big humungus product list. -->
     <div class="container">
         <!-- First main section. -->
-        <div id="Loop_Powered">
+        <div class="section-title">
             <h3>1. 4-20mA Loop Powered (base price starts at $178 - $357)</h3>
         </div>
         <div class="row">
@@ -407,12 +432,11 @@
             </div>
         </div>
 
+
+        <div class="section-title">
+            <h4>World's First Loop Powered LED Bargraph</h4>
+        </div>
         <div class="row">
-            <div>
-                <p></p>
-                <h4>World's First Loop Powered LED Bargraph</h4>
-                <p></p>
-            </div>
             <div class="col-md-6 searchable">
                 <p><a href="https://texmate.com/products/appspec/SB-B31/"><img class="nofloat" height="100px"
                             src="https://texmate.com/media/images/meter_thumbs/2022/06/Texmate_bargraph_meter_SB-B31_thumb.jpg"
@@ -446,8 +470,7 @@
             </div>
         </div>
 
-        <div style="margin-bottom: 15px;">
-            <p></p>
+        <div class="section-title" style="margin-bottom: 15px;">
             <h4>World's First Ultra Short Depth, 5 digits, 16-Bits, 4-20mA DC Current Loop Powered Meters</h4>
             <a class="text-decoration-none item-name"
                 href="https://texmate.com/static/pdf/Texmate Ultra Short Depth 4-20mA Loop Powered Panel Meters flyer (Z700).pdf"
@@ -475,13 +498,10 @@
             </div>
         </div>
 
+        <div class="section-title">
+            <h4>World's First Ultra Short Depth, 16-Bits, 4-20mA DC Current Loop-Powered Meter with Dual Totalizer</h4>
+        </div>
         <div class="row">
-            <div>
-                <p></p>
-                <h4>World's First Ultra Short Depth, 16-Bits, 4-20mA DC Current Loop-Powered Meter with Dual
-                    Totalizer</h4>
-                <p></p>
-            </div>
             <div class="col-md-6 searchable">
                 <p><a href="https://texmate.com/products/appspec/SD-60XI/"><img class="nofloat" height="100px"
                             src="https://texmate.com/media/images/meter_thumbs/2017/11/Texmate_SD-60XI-loop-powered-panel_meters_thumb.png"
@@ -518,10 +538,11 @@
         </div>
 
         <!-- Next main section. -->
-        <div id="ACAmp" style="margin-top:10px; margin-bottom: 5px;">
+        <div class="section-title" style="margin-top:10px; margin-bottom: 5px;">
             <h3>2. AC</h3>
+            <h4>AC Amp (Base price starts at $156 - $624) </h4>
         </div>
-        <h4>AC Amp (Base price starts at $156 - $624) </h4>
+
         <div class="row">
             <div class="col-md-3 searchable">
                 <p><a href="https://texmate.com/products/appspec/BX-35-ACA/"><img class="nofloat" height="100px"
@@ -720,7 +741,7 @@
                             src="https://texmate.com/media/images/meter_thumbs/2018/10/Texmate_UM-35-DCA_Panel_Meter_thumb.png"
                             alt="UM-35-ACA" title="UM-35-ACA"></a><br>
                     <a href="https://texmate.com/products/appspec/UM-35-ACA/" class="text-decoration-none item-name"
-                        title="UM-35-ACA">UM-35-ACA</a>replaced
+                        title="UM-35-ACA">UM-35-ACA</a> replaced
                     <a href="https://texmate.com/products/appspec/UM-35-ACA/" class="text-decoration-none item-name"
                         title="UM-35-ACA">
                         UM-35ACI1</a>
@@ -736,12 +757,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 searchable">
+            <div class="col-md-4 searchable duplicate">
                 <p><a href="https://texmate.com/products/appspec/UM-35-ACA/"><img class="nofloat" height="100px"
                             src="https://texmate.com/media/images/meter_thumbs/2018/10/Texmate_UM-35-DCA_Panel_Meter_thumb.png"
                             alt="UM-35-ACA" title="UM-35-ACA"></a><br>
                     <a href="https://texmate.com/products/appspec/UM-35-ACA/" title="UM-35-ACA"
-                        class="text-decoration-none item-name">UM-35-ACA</a><br>replaced
+                        class="text-decoration-none item-name">UM-35-ACA</a> replaced
                     <a href="https://texmate.com/products/appspec/UM-35-ACA/" title="UM-35-ACA"
                         class="text-decoration-none item-name">
                         UM-35ACI5</a>
@@ -784,7 +805,7 @@
             </div>
         </div>
 
-        <div id="ACVolt">
+        <div class="section-title">
             <h4>AC Volt (Base price starts at $156 - $624)</h4>
         </div>
 
@@ -824,9 +845,9 @@
                             src="https://texmate.com/media/images/meter_thumbs/2018/07/Texmate_DX-35-Series_panel_meter_thumb.png"
                             alt="DX-35-ACV" title="DX-35-ACV"></a><br><br>
                     <a href="https://texmate.com/products/appspec/DX-35-ACV/" title="DX-35-ACV"
-                        class="text-decoration-none item-name">DX-35-ACV</a><br>
+                        class="text-decoration-none item-name">DX-35-ACV</a> replaced
                     <a href="https://texmate.com/products/appspec/DX-35-ACV/" title="DX-35-ACV"
-                        class="text-decoration-none item-name">Replaced DU-35AC</a><br>
+                        class="text-decoration-none item-name">DU-35AC</a><br>
                 </p>
                 <ul class="list-unstyled">
                     <li><span style="font-size:12px;">0.56" (14.224mm) LED 3.5 (1999) digit</span></li>
@@ -843,9 +864,9 @@
                             src="https://texmate.com/media/images/meter_thumbs/2018/07/Texmate_DX-40-ACV_panel_meter_thumb.png"
                             alt="DX-40-ACV" title="DX-40-ACV"></a><br>
                     <a href="https://texmate.com/products/appspec/DX-40-ACV/" title="DX-40-ACV"
-                        class="text-decoration-none item-name">DX-40-ACV</a><br>
+                        class="text-decoration-none item-name">DX-40-ACV</a> replaced
                     <a href="https://texmate.com/products/appspec/DX-40-ACV/" title="DX-40-ACV"
-                        class="text-decoration-none item-name">Replaced DU-40AC</a>
+                        class="text-decoration-none item-name"> DU-40AC</a>
                 </p>
                 <ul class="list-unstyled">
                     <li><span style="font-size:12px;">0.56" (14.224mm) LED 4 (9999) digit</span></li>
@@ -1013,7 +1034,7 @@
                 </ul>
                 <p></p>
             </div>
-            <div class="col-md-3 searchable">
+            <div class="col-md-3 searchable duplicate">
                 <p><a href="https://texmate.com/products/appspec/CPW-503/"><img class="nofloat" height="100px"
                             src="https://texmate.com/media/images/meter_thumbs/2018/05/Texmate_3_phase_power_meter_CPW-503_thumb.png"
                             alt="CPW-503" title="CPW-503"></a><br>
@@ -1030,9 +1051,9 @@
                             src="https://texmate.com/media/images/meter_thumbs/2018/08/Texmate_UM-35-DCA_Panel_Meter_thumb.png"
                             alt="UM-35-ACV" title="UM-35-ACV"></a><br>
                     <a href="https://texmate.com/products/appspec/UM-35-ACV/" title="UM-35-ACV"
-                        class="text-decoration-none item-name">UM-35-ACV</a><br>
+                        class="text-decoration-none item-name">UM-35-ACV</a> replaced 
                     <a href="https://texmate.com/products/appspec/UM-35-ACV/" title="UM-35-ACV"
-                        class="text-decoration-none item-name">Replaced UM-35AC</a>
+                        class="text-decoration-none item-name">UM-35AC</a>
                 </p>
                 <ul class="list-unstyled">
                     <li><span style="font-size:12px;">0.56" (14.224mm) LED 3.5 (1999) digit</span></li>
@@ -1048,9 +1069,9 @@
                             src="https://texmate.com/media/images/meter_thumbs/2018/05/Texmate_UM-40AC_Volt_Panel_Meter_thumb.png"
                             alt="UM-40-ACV" title="UM-40-ACV"></a><br>
                     <a href="https://texmate.com/products/appspec/UM-40-ACV/" title="UM-40-ACV"
-                        class="text-decoration-none item-name">UM-40-ACV</a><br>
+                        class="text-decoration-none item-name">UM-40-ACV</a> replaced 
                     <a href="https://texmate.com/products/appspec/UM-40-ACV/" title="UM-40-ACV"
-                        class="text-decoration-none item-name">Replaced UM-40AC</a>
+                        class="text-decoration-none item-name">UM-40AC</a>
                 </p>
                 <ul class="list-unstyled">
                     <li><span style="font-size:12px;">0.8" (20.32mm) LED 4 (9999) digit</span></li>
@@ -1065,10 +1086,8 @@
         </div>
 
         <!-- Next main section. -->
-        <div class="row">
-            <div id="Counter">
-                <h3>3. Counter (Base price starts at $118 - $139)</h3>
-            </div>
+        <div class="section-title">
+            <h3>3. Counter (Base price starts at $118 - $139)</h3>
         </div>
         <div class="row">
             <div class="col-md-6 searchable">
@@ -1110,19 +1129,11 @@
             </div>
         </div>
 
-        <div class="border-top" style="margin: 35px;"></div>
-
         <!-- Next main section. -->
-
-        <div id="DCAmp">
+        <div class="section-title">
             <h3>4. DC</h3>
             <h4>DC Amp to be used with mV Shunt (Base price starts at $156 - $456)</h4>
         </div>
-
-        <div>
-
-        </div>
-
         <div class="row">
             <div class="col-md-3 searchable">
                 <p><a href="https://texmate.com/products/appspec/BX-35-DCA/"><img class="nofloat" height="100px"
@@ -1288,8 +1299,7 @@
                     <li><span style="font-size:12px;">36x144mm (1.42"x5.69") 9/64 DIN Size</span></li>
                     <li><span style="font-size:12px;">Vertical or Horizontal DC Amp Bargraph</span></li>
                     <li><span style="font-size:12px;">0-50mV, 0-100mV Shunts 101 Seg LED Bargraph Controller /
-                            Transmitter
-                            85-265 VAC / 95-300 VDC @ 2.0W Auto Sensing Power</span></li>
+                            Transmitter 85-265 VAC / 95-300 VDC @ 2.0W Auto Sensing Power</span></li>
                     <li><span style="font-size:12px;">Analog, 4-20mA or 0-10VDC, 2 relays One analog</span></li>
                 </ul>
                 <p></p>
@@ -1355,8 +1365,8 @@
                 <p><a href="https://texmate.com/products/appspec/DV/"><img class="nofloat" height="100px"
                             src="https://texmate.com/media/images/meter_thumbs/2019/02/Texmate-DV-analog-switchboard-meter-with-digital-display_thumb.png"
                             alt="DV" title="DV"></a><br>
-                    <a href="https://texmate.com/products/appspec/DV/" title="DV"
-                        class="text-decoration-none item-name">DUAL VIEW - DV Series<br>Switch Board
+                    <a href="https://texmate.com/products/appspec/DV/" class="text-decoration-none item-name"
+                        title="DV">DUAL VIEW - DV Series Switch Board
                         Meter with Digital Display</a>
                 </p>
                 <ul class="list-unstyled">
@@ -1369,7 +1379,7 @@
             </div>
         </div>
 
-        <div id="DCVolt">
+        <div class="section-title">
             <h4>DC Volt (Base price starts at $156 - $456)</h4>
         </div>
         <div class="row">
@@ -1619,10 +1629,7 @@
                             src="https://texmate.com/media/images/meter_thumbs/2019/02/Texmate-DV-analog-switchboard-meter-with-digital-display_thumb.png"
                             alt="DV" title="DV"></a><br>
                     <a href="https://texmate.com/products/appspec/DV/" class="text-decoration-none item-name"
-                        title="DV">DUAL VIEW - DV Series Switch Board
-                        Meter with
-                        Digital
-                        Display</a>
+                        title="DV">DUAL VIEW - DV Series Switch Board Meter with Digital Display</a>
                 </p>
                 <ul class="list-unstyled">
                     <li><span style="font-size:12px;">0.56" (14.224mm) LED 3.5 (1999) digit</span></li>
@@ -1635,12 +1642,12 @@
         </div>
 
 
-        <div id="DCEconomical">
+        <div class="section-title"">
             <h4>Economical DC Volt Panel Meters (Base price starts at $106 - $268)</h4>
             2VDC is standard range. Optional range: 20mV/200mV/20/200/1200VDC. Powered by 5V DC or 110V or 220VAC
             <p></p>
         </div>
-        <div class="row">
+        <div class=" row">
             <div class="col-md-3 searchable">
                 <p><a href="https://texmate.com/products/appspec/AM-20/"><img class="nofloat" height="100px"
                             src="https://texmate.com/media/images/meter_thumbs/2020/03/AM-20-Texmate_bargraph_meters_Gal_red_green_thumb.png"
@@ -1877,7 +1884,7 @@
         </div>
 
         <!-- Next main section. -->
-        <div id="ShortDepth">
+        <div class="section-title">
             <h3>5. DC Powered Process Meters - 1/16 DIN Short Depth (Base price starts at $198 - $314)</h3>
         </div>
         <div class="row">
@@ -2066,7 +2073,7 @@
                 </ul>
                 <p></p>
             </div>
-            <div class="col-md-3 searchable">
+            <div class="col-md-3 searchable duplicate">
                 <p><a href="https://texmate.com/products/appspec/SB-B31/"><img class="nofloat" height="100px"
                             src="https://texmate.com/media/images/meter_thumbs/2017/05/Texmate_SB-B31_bargraphs_thumb.png"
                             alt="SB-B31" title="SB-B31"></a><br>
@@ -2083,7 +2090,7 @@
         </div>
 
         <!-- Next main section. -->
-        <div id="Flow" style="margin-bottom: 15px;">
+        <div class="section-title" style="margin-bottom: 15px;">
             <h3>6. Flow / Rate Totalizer (Base price starts at $299 - $425)</h3>
             <a href="https://texmate.com/media/pdf/Texmate_DI-50-FLOW meter Controller flyer (d0058)-1.pdf"
                 target="_blank" class="text-decoration-none"> DI-50-FLOW Rate &amp; Total Flow Meter Controller
@@ -2107,7 +2114,7 @@
                 </ul>
                 <p></p>
             </div>
-            <div class="col-md-4 searchable">
+            <div class="col-md-4 searchable duplicate">
                 <p><a href="https://texmate.com/products/appspec/SD-60XI/"><img class="nofloat" height="100px"
                             src="https://texmate.com/media/images/meter_thumbs/2017/11/Texmate_SD-60XI-loop-powered-panel_meters_thumb.png"
                             alt="SD-60XI" title="SD-60XI"></a><br>
@@ -2124,7 +2131,7 @@
                 </ul>
                 <p></p>
             </div>
-            <div class="col-md-4 searchable">
+            <div class="col-md-4 searchable duplicate">
                 <p><a href="https://texmate.com/products/appspec/SD-802XAI/"><img class="nofloat" height="100px"
                             src="https://texmate.com/media/images/meter_thumbs/2017/11/Texmate_SD-802XAI-loop-powered-panel-meters_thumb.png"
                             alt="SD-802XAI" title="SD-802XAI"></a><br>
@@ -2143,7 +2150,7 @@
         </div>
 
         <!-- Next main section. -->
-        <div id="Frequency">
+        <div class="section-title">
             <h3>7. Frequency (Base price starts at $156 - $624)</h3>
         </div>
         <div class="row">
@@ -2200,7 +2207,7 @@
                 </ul>
                 <p></p>
             </div>
-            <div class="col-md-3 searchable">
+            <div class="col-md-3 searchable duplicate">
                 <p><br>
                     <a href="https://texmate.com/products/appspec/CPW-503/"><img class="nofloat" height="100px"
                             src="https://texmate.com/media/images/meter_thumbs/2018/05/Texmate_3_phase_power_meter_CPW-503_thumb.png"
@@ -2217,7 +2224,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3 searchable">
+            <div class="col-md-3 searchable duplicate">
                 <a href="https://texmate.com/products/appspec/DD-40VHZ/"><img class="nofloat" height="100px"
                         src="https://texmate.com/media/images/meter_thumbs/2020/05/Texmate_panel_meter_DD-40VHZ_thumb.png"
                         alt="DD-40VHZ" title="DD-40VHZ"></a><br>
@@ -2379,7 +2386,7 @@
         </div>
 
         <!-- Next main section. -->
-        <div id="Magnetostrictive">
+        <div class="section-title">
             <h3>8. Magnetostrictive (Base price starts at $529.</h3>
         </div>
         <div class="row">
@@ -2411,7 +2418,7 @@
             </div>
         </div>
 
-        <div id="Manual_Station">
+        <div class="section-title">
             <h3>9. Manual Auto Station (Base price starts at $359 - $625)</h3>
         </div>
         <div class="row">
@@ -2488,7 +2495,7 @@
         </div>
 
 
-        <div id="Positioning" style="margin-bottom: 20px;">
+        <div class="section-title" style="margin-bottom: 20px;">
             <h3>10. Positioning, Displacement (Base price starts at $523)</h3>
             <a href="https://texmate.com/media/pdf/2018/07/Texmate_LVDT-200_dual_chanel_dual_inputs_controller_Flyer_d0054sp.pdf"
                 target="_blank" class="text-decoration-none">Dual Inputs LVDT Controller Flyer</a>
@@ -2508,7 +2515,7 @@
             </div>
         </div>
 
-        <div id="Power">
+        <div class="section-title">
             <h3>11. Power / Energy (Base price starts at $319 - $624)</span>
             </h3>
         </div>
@@ -2561,7 +2568,7 @@
                     <br>Var meter<br>Bi-Direction
                 </p>
             </div>
-            <div class="col-md-3 searchable">
+            <div class="col-md-3 searchable duplicate">
                 <p><a href="https://texmate.com/products/appspec/CPW-503/"><img class="nofloat"
                             src="https://texmate.com/media/images/meter_thumbs/2018/05/Texmate_3_phase_power_meter_CPW-503_thumb.png"
                             alt="CPW-503" title="CPW-503" height="100px"></a><br>
@@ -2635,7 +2642,8 @@
             </div>
         </div>
 
-        <div id="4-20mA">
+        <!-- Next section. -->
+        <div class="section-title">
             <h3>12. Process (Base price starts at $156 - $456)</h3>
             <h4 class="hr-sect">Lynx Series - Indicators</h4>
         </div>
@@ -2766,7 +2774,10 @@
             </div>
         </div>
 
-        <h4>Leopard Series - Controller &amp; Transmitter</h4>
+        <div class="section-title">
+            <h4>Leopard Series - Controller &amp; Transmitter</h4>
+        </div>
+
         <div class="row">
             <div class="col-md-3 searchable">
                 <br>
@@ -2857,8 +2868,8 @@
             </div>
         </div>
 
-        <div>
-            <h4 class="hr-sect">Tiger Series - Micro PLC</h4>
+        <div class="section-title">
+            <h4>Tiger Series - Micro PLC</h4>
         </div>
         <div class="row">
             <div class="col-md-4 searchable">
@@ -2905,11 +2916,11 @@
             </div>
         </div>
 
-        <div style="margin-top: 20px">
+        <div class="section-title" style="margin-top: 20px">
             <h4>Other Models - Indicators</h4>
         </div>
         <div class="row">
-            <div class="col-md-3 searchable">
+            <div class="col-md-3 searchable duplicate">
                 <p><a href="https://texmate.com/products/appspec/SPM-083CL/"><img class="nofloat" height="100px"
                             src="https://texmate.com/media/images/meter_thumbs/2019/03/SPM-083CL-panel-meter-with-panel-mounting-plate_thumb.png"
                             alt="SPM-083CL" title="SPM-083CL"></a><br>
@@ -2965,8 +2976,8 @@
                             src="https://texmate.com/media/images/meter_thumbs/2019/02/Texmate-DV-analog-switchboard-meter-with-digital-display_thumb.png"
                             alt="DV" title="DV"></a><br>
                     <a href="https://texmate.com/products/appspec/DV/" title="DV"
-                        class="text-decoration-none item-name">DUAL VIEW - DV Series Switch Board
-                        Meter with Digital Display</a>
+                        class="text-decoration-none item-name">DUAL VIEW - DV Series Switch Board Meter with Digital
+                        Display</a>
                 </p>
                 <ul class="list-unstyled">
                     <li><span style="font-size:12px;">0.56" (14.224mm) LED 3.5 (1999) digit</span></li>
@@ -2978,11 +2989,11 @@
             </div>
         </div>
 
-        <div>
+        <div class="section-title">
             <h4>Miniature Size 37x15mm (1.5"x0.6")</h4>
         </div>
         <div class="row">
-            <div class="col-md-6 searchable">
+            <div class="col-md-6 searchable duplicate">
                 <p><a href="https://texmate.com/products/appspec/MINI-CL4-20/"><img class="nofloat" height="100px"
                             src="https://texmate.com/media/images/meter_thumbs/2019/02/Texmate_MINI-panel_meter_thumb.png"
                             alt="MINI-CL4-20" title="MINI-CL4-20"></a><br>
@@ -3017,7 +3028,7 @@
             </div>
         </div>
 
-        <div>
+        <div class="section-title">
             <h4>DIN Rail Mount Transmitters/Isolators/Controllers</h4>
         </div>
         <div class="row">
@@ -3052,7 +3063,7 @@
             </div>
         </div>
 
-        <div id="Miniature">
+        <div class="section-title">
             <h3>13. Process - Miniature meters 15x37 mm (0.6"x 1.5") (Base price starts at $183 - $189)</h3>
         </div>
         <div class="row">
@@ -3073,7 +3084,7 @@
                 </ul>
                 <p></p>
             </div>
-            <div class="col-md-6 searchable">
+            <div class="col-md-6 searchable duplicate">
                 <p><a href="https://texmate.com/products/appspec/MINI-CL4-20/"><img class="nofloat" height="100px"
                             src="https://texmate.com/media/images/meter_thumbs/2019/02/Texmate_MINI-panel_meter_thumb.png"
                             alt="MINI-CL4-20" title="MINI-CL4-20"></a><br>
@@ -3091,7 +3102,7 @@
             </div>
         </div>
 
-        <div id="RPM">
+        <div class="section-title">
             <h3>14. RPM / Speed (Base price starts at $229 - $319)</span>
             </h3>
         </div>
@@ -3162,7 +3173,7 @@
             </div>
         </div>
 
-        <div id="DCVolts_Signal_Powered">
+        <div class="section-title">
             <h3>15. Signal Powered and AC DC Volts (Base price starts at $159 - $194)</h3>
         </div>
         <div class="row">
@@ -3208,7 +3219,7 @@
             </div>
         </div>
 
-        <div id="Temperature">
+        <div class="section-title">
             <h3>16. Temperature (Base price starts at $99 - $399)</h3>
             <h4 class="hr-sect" style="padding-top:10px;">Thermocouple</h4>
         </div>
@@ -3570,8 +3581,8 @@
             </div>
         </div>
 
-        <div>
-            <h4 class="hr-sect">RTD</h4>
+        <div class="section-title">
+            <h4>RTD</h4>
         </div>
         <div class="row">
             <div class="col-md-3 searchable">
@@ -3794,7 +3805,7 @@
             </div>
         </div>
 
-        <div>
+        <div class="section-title">
             <h3>17. Universal Input Temperature or Analog Inputs RTD, Thermocouple mV, V or mA (Base price starts at
                 $129 - $183)</h3>
         </div>
@@ -3857,7 +3868,7 @@
             </div>
         </div>
 
-        <div id="Weighing">
+        <div class="section-title">
             <h3>18. Weighing, Load Cell, Pressure (Base price starts at $162 - $424)</h3>
         </div>
         <div class="row">
